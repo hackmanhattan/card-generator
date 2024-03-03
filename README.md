@@ -1,7 +1,7 @@
 # card-generator
 Lil tool to setup RFID cards with random ID &amp; print labels for them.
 
-HM uses H10301 format cards.
+HM uses [H10301 format](https://www.identisource.net/26_bit_format_layout.cfm) cards.
 
 For a given 8-bit facility code, generates a 30 random 16-bit card numbers along with:
 - a page of Avery 6460 labels with the card data in decimal as `<facility-code> <card-number>`
