@@ -1,0 +1,47 @@
+html {
+    width: 8.5in;
+    margin: 0in;
+    padding: 0in;
+/*    outline: 1px solid #000;  */
+}
+
+body {
+    margin: 0in;
+    padding: 0in;
+
+}
+
+.page {
+/*    outline: 1px solid #000; */
+    display: grid;
+    grid-template-columns: repeat(3, 2.625in); /* Fixed column width */
+    grid-template-rows: repeat(10, 1in); /* Fixed row height */
+    grid-gap: 0 0.125in; /* Vertical gap is 0, horizontal gap is 0.125 inches */
+    padding-top: 0.5in;
+    padding-left: 0.1875in;
+    page-break-after: always;
+}
+
+.label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.625in; /* width of each label */
+    height: 1in; /* height of each label */
+    outline: 1px solid #000; 
+    box-sizing: content-box;
+    overflow: hidden;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 10pt;
+}
+
+@media print {
+    .hidden-print {
+        display: none !important;
+    }
+
+    .label {
+        outline: none;
+    }
+}

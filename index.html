@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script type="module">
+        import { downloadZip } from "https://cdn.jsdelivr.net/npm/client-zip/index.js"
+
+        window.generate = async function(event) {
+            const facility = "123"
+
+            console.log("generating")
+            const n = 30;
+            const cardIds = window.crypto.getRandomValues(new Uint16Array(n));
+
+            const labels = document.getElementById("labels").children;
+
+            const files = Array.from(cardIds).map((cardId, i) => {
+                labels[i].innerHTML = facility +" "+cardId.toString().padStart(5, '0');
+
+                return {
+                    name: `card_${(i+1).toString().padStart(2, '0')}.txt`,
+                    input: facility+" "+cardId.toString().padStart(5, '0')
+                }
+            });
+
+
+            console.log(files);
+
+            const blob = await downloadZip(files).blob();
+            console.log(blob);
+            const link = document.createElement("a")
+            link.href = URL.createObjectURL(blob)
+            link.download = "test.zip"
+            link.click()
+            link.remove()
+
+
+            try {
+                window.print();
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    </script>
+</head>
+<body>
+    <div style="padding: 1em;" class="hidden-print">
+        <p>Generates Avery 6460 labels as well as files to load onto Flipper for writing cards</p>
+        <button onclick="generate()">Generate</button>
+    </div>
+    <div id="labels" class="page">
+        <div class="label"></div>
+        <div class="label"></div>
+        <div class="label"></div>
+        <div class="label"></div>
+        <div class="label"></div>
+        <div class="label"></div>
+        <div class="label"></div>
+        <div class="label"></div>
+        <div class="label"></div>
+        <div class="label"></div>
+        <div class="label"></div>
+        <div class="label"></div>
+        <div class="label"></div>
+        <div class="label"></div>
+        <div class="label"></div>
+        <div class="label"></div>
+        <div class="label"></div>
+        <div class="label"></div>
+        <div class="label"></div>
+        <div class="label"></div>
+        <div class="label"></div>
+        <div class="label"></div>
+        <div class="label"></div>
+        <div class="label"></div>
+        <div class="label"></div>
+        <div class="label"></div>
+        <div class="label"></div>
+        <div class="label"></div>
+        <div class="label"></div>
+        <div class="label"></div>
+    </div>
+</body>
+</html>
